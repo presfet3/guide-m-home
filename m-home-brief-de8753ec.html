@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欧博 · 站点介绍与使用说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde9d0 0%, #f7d9b0 50%, #f3ca94 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1.2rem;
+        }
+
+        .page-card {
+            max-width: 1000px;
+            width: 100%;
+            background-color: #fffcf7;
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px rgba(150, 90, 40, 0.12), 0 8px 16px rgba(0, 0, 0, 0.03);
+            padding: 3rem 2.8rem 4rem;
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 640px) {
+            .page-card {
+                padding: 2rem 1.5rem 2.8rem;
+                border-radius: 32px 32px 24px 24px;
+            }
+        }
+
+        .hero {
+            margin-bottom: 2.8rem;
+            border-left: 5px solid #df9e6b;
+            padding-left: 1.8rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 550;
+            color: #4a3426;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #b47b4e, #7f5838);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #6b4f3a;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+            font-weight: 380;
+        }
+
+        .summary {
+            background: #f7efe6;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin: 2rem 0 2.6rem;
+        }
+
+        .summary p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #3f2d21;
+        }
+
+        .summary strong {
+            color: #9c6d49;
+            font-weight: 550;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem 2.5rem;
+            margin: 2.8rem 0;
+        }
+
+        @media (max-width: 700px) {
+            .highlights {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+        }
+
+        .highlight-item {
+            background: #fffaf3;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem 1.8rem;
+            box-shadow: 0 4px 10px rgba(180, 120, 60, 0.06);
+            border: 1px solid #f2e3d4;
+            transition: box-shadow 0.15s;
+        }
+
+        .highlight-item:hover {
+            box-shadow: 0 8px 18px rgba(160, 100, 50, 0.08);
+        }
+
+        .highlight-item h3 {
+            font-size: 1.35rem;
+            font-weight: 530;
+            color: #5b3d29;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-item h3::before {
+            content: "✦";
+            color: #c08652;
+            font-size: 1.2rem;
+        }
+
+        .highlight-item p {
+            color: #503b2c;
+            line-height: 1.65;
+            font-size: 0.98rem;
+        }
+
+        .usage-suggestions {
+            background: #fff8f0;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin: 2.6rem 0;
+            border: 1px solid #eddccb;
+        }
+
+        .usage-suggestions h2 {
+            font-size: 1.7rem;
+            font-weight: 520;
+            color: #4a3426;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+
+        .usage-suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .usage-suggestions li {
+            padding: 0.6rem 0 0.6rem 2rem;
+            position: relative;
+            color: #3f2d21;
+            font-size: 1rem;
+            line-height: 1.65;
+            border-bottom: 1px dashed #e8d6c2;
+        }
+
+        .usage-suggestions li:last-child {
+            border-bottom: none;
+        }
+
+        .usage-suggestions li::before {
+            content: "▹";
+            position: absolute;
+            left: 0.2rem;
+            color: #c08652;
+            font-size: 1.2rem;
+        }
+
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            margin: 2.2rem 0 2rem;
+            padding: 1.8rem 0;
+            border-top: 1px solid #eadbcb;
+            border-bottom: 1px solid #eadbcb;
+        }
+
+        .faq-mini-item {
+            flex: 1 1 200px;
+        }
+
+        .faq-mini-item .q {
+            font-weight: 550;
+            color: #5b3d29;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .faq-mini-item .a {
+            color: #5f4836;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .visit-note {
+            margin: 2.5rem 0 1rem;
+            text-align: center;
+            background: #f5ede4;
+            border-radius: 60px;
+            padding: 1.4rem 2rem;
+            font-size: 1.05rem;
+            color: #3f2d21;
+            line-height: 1.7;
+        }
+
+        .visit-note a {
+            color: #8f673f;
+            text-decoration: none;
+            font-weight: 530;
+            border-bottom: 2px solid #dbb994;
+            padding-bottom: 1px;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .visit-note a:hover {
+            color: #6f4b2a;
+            border-bottom-color: #b8814b;
+        }
+
+        .visit-note .muted {
+            color: #7b624c;
+            font-size: 0.95rem;
+            display: block;
+            margin-top: 0.5rem;
+            opacity: 0.75;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8b735d;
+            letter-spacing: 0.2px;
+        }
+
+        .footer-note span {
+            display: inline-block;
+            margin: 0 6px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: #e7d2bd;
+            color: #3f2d21;
+            font-weight: 500;
+            padding: 0.5rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            transition: background 0.15s, box-shadow 0.1s;
+            border: 1px solid #dbbc9f;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .btn-link:hover {
+            background: #dac2aa;
+            border-color: #c8a684;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .summary p {
+                font-size: 1rem;
+            }
+            .highlight-item {
+                padding: 1.2rem 1.2rem 1.4rem;
+            }
+            .usage-suggestions {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-card">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>关于 <span>欧博</span></h1>
+            <p>一个温和、克制的信息站点，关注内容本身与访问体验的平衡</p>
+        </div>
+
+        <!-- 摘要 -->
+        <div class="summary">
+            <p><strong>欧博</strong> 是一个立足于提供清晰、可靠访问路径的网站。这里没有浮夸的渲染，也没有急切的引导——我们更希望每一位来访者都能从容地了解站点的用途与边界。页面围绕「产品说明式」结构组织，从摘要、特点到使用建议，每一部分都经过审慎梳理，力求在信息密度与阅读舒适度之间找到恰当的落脚点。</p>
+        </div>
+
+        <!-- 亮点 -->
+        <div class="highlights">
+            <div class="highlight-item">
+                <h3>克制的呈现</h3>
+                <p>所有内容均以平实、清晰的方式组织。不采用诱导性措辞或夸大描述，重点放在信息本身的逻辑与实用性上。</p>
+            </div>
+            <div class="highlight-item">
+                <h3>一致的体验</h3>
+                <p>无论是桌面还是移动端，页面结构都经过响应式调整。暖色渐变背景与白色卡片营造稳定、舒适的阅读氛围。</p>
+            </div>
+            <div class="highlight-item">
+                <h3>平实的导航</h3>
+                <p>站点内链接以自然语句嵌入，不强调「进入」「点击」等动作词汇。例如，你可以通过<a href="https://m-home-oubo.com" style="color: #8f673f; font-weight: 500; text-decoration: none; border-bottom: 1px solid #dbb994;">欧博</a>了解更完整的介绍，但一切选择都由你决定。</p>
+            </div>
+            <div class="highlight-item">
+                <h3>注重可信</h3>
+                <p>我们不对服务或内容做超越实际的承诺，也不设置不透明的跳转。站点说明与使用建议均基于真实可查的信息。</p>
+            </div>
+        </div>
+
+        <!-- 使用建议（场景/提示） -->
+        <div class="usage-suggestions">
+            <h2>使用建议 · 场景提示</h2>
+            <ul>
+                <li><strong>预览与了解：</strong> 如果你第一次接触这个站点，建议先浏览摘要和亮点部分，对整体定位形成初步印象。</li>
+                <li><strong>功能探索：</strong> 若你对具体模块或服务感兴趣，可以通过页内链接进一步了解细节，所有入口均保持直观。</li>
+                <li><strong>移动端阅读：</strong> 在手机或平板上访问时，卡片布局会自动适配，内容层级依然清晰，无需频繁缩放。</li>
+                <li><strong>保持理性预期：</strong> 站点内容基于客观信息组织，不包含虚假、夸大或误导性描述。请根据自身判断使用。</li>
+                <li><strong>反馈与参考：</strong> 如果你发现任何信息需要更新或存在疑问，可以参考站点内提供的联系方式（若有），但本页面仅作介绍之用。</li>
+            </ul>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <div class="faq-mini-item">
+                <div class="q">❓ 这个页面是做什么的？</div>
+                <div class="a">本站点介绍页，用于说明 <a href="https://m-home-oubo.com" style="color: #7f5838; text-decoration: underline wavy #dbb994 1px; text-underline-offset: 4px;">欧博</a> 的定位、特点以及使用时的合理预期。</div>
+            </div>
+            <div class="faq-mini-item">
+                <div class="q">❓ 内容是否可信？</div>
+                <div class="a">所有表述均经过核对，无虚假或夸大成分。但建议结合自身判断使用任何在线资源。</div>
+            </div>
+            <div class="faq-mini-item">
+                <div class="q">❓ 是否有隐藏跳转？</div>
+                <div class="a">没有。页面内的链接均明确可见，且自然嵌入在语句中，不包含误导性入口。</div>
+            </div>
+        </div>
+
+        <!-- 可信但克制的访问说明 -->
+        <div class="visit-note">
+            <div>
+                如果你希望进一步了解或使用相关服务，可以通过 <a href="https://m-home-oubo.com">欧博</a> 访问主站。 
+                <span class="muted">请根据实际需求自行决定，本站不进行任何诱导或强制引导。</span>
+            </div>
+            <div style="margin-top: 0.8rem;">
+                <span class="btn-link" style="cursor: default; background: #ede0d2; border-color: #d6bea6;">了解更多 →</span>
+                <span style="display: inline-block; margin-left: 10px; font-size: 0.85rem; color: #7b624c;">（按钮仅为示意，实际链接已嵌入上文）</span>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer-note">
+            <span>内容基于公开信息整理</span>
+            <span>·</span>
+            <span>保持理性 · 自主判断</span>
+            <span>·</span>
+            <span>版本 2025.04</span>
+        </div>
+
+    </div>
+</body>
+</html>
